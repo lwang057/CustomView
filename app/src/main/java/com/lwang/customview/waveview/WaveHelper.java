@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * WaveHelper.class
- *
- * @author lwang
- * @date 2017/11/17.
+ * @Author lwang
+ * @Date 2018/5/22 21:38
+ * @Description WaveHelper类
  */
 public class WaveHelper {
 
@@ -39,12 +38,12 @@ public class WaveHelper {
     private float mDefaultFloatViewRotation = 85;
 
 
-    public void setDefaultWaterLevelRatio(float defaultWaterLevelRatioF,float defaultWaterLevelRatioT) {
+    public void setDefaultWaterLevelRatio(float defaultWaterLevelRatioF, float defaultWaterLevelRatioT) {
         mDefaultWaterLevelRatioF = defaultWaterLevelRatioF;
         mDefaultWaterLevelRatioT = defaultWaterLevelRatioT;
     }
 
-    public void setDefaultAmplitudeRatio(float defaultAmplitudeRatioF,float defaultAmplitudeRatioT) {
+    public void setDefaultAmplitudeRatio(float defaultAmplitudeRatioF, float defaultAmplitudeRatioT) {
         mDefaultAmplitudeRatioF = defaultAmplitudeRatioF;
         mDefaultAmplitudeRatioT = defaultAmplitudeRatioT;
     }
@@ -58,10 +57,9 @@ public class WaveHelper {
 
         mWaveView = aveView;
         mFloatView = view;
-        mWaveView.setWaveColor(behindWaveColor,frontWaveColor);
+        mWaveView.setWaveColor(behindWaveColor, frontWaveColor);
         initAnimation();
     }
-
 
 
     private void initAnimation() {
@@ -97,7 +95,7 @@ public class WaveHelper {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 //获取sin函数的height，更新mFloatView
-                float value = mWaveView.getSinHeight() - 0.9f*mFloatView.getMeasuredHeight();
+                float value = mWaveView.getSinHeight() - 0.9f * mFloatView.getMeasuredHeight();
 //                mFloatView.setRotation(value + mDefaultFloatViewRotation);
                 mFloatView.setTranslationY(value);
                 mFloatView.invalidate();
@@ -113,7 +111,6 @@ public class WaveHelper {
         mAnimatorSet = new AnimatorSet();
         mAnimatorSet.playTogether(animators);
     }
-
 
 
     public void start() {

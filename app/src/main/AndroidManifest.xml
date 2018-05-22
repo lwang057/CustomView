@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".waveview.WaveViewActivity"></activity>
+        <activity android:name=".waveview.WaveViewActivity" />
+        <activity android:name=".stepqqview.StepQQViewActivity"></activity>
     </application>
 
 </manifest>

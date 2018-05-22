@@ -12,4 +12,10 @@
         android:text="WaveView波浪船"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/button_step_qq_view"
+        android:layout_width="match_parent"
+        android:text="StepQQView仿QQ运动步数"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

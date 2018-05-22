@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.lwang.customview.stepqqview.StepQQViewActivity;
 import com.lwang.customview.waveview.WaveViewActivity;
 
 import butterknife.ButterKnife;
@@ -19,11 +20,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.button_wave_view})
-    public void onClick(View v){
-        switch (v.getId()){
+    @OnClick({R.id.button_wave_view, R.id.button_step_qq_view})
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.button_wave_view:
                 startActivity(new Intent(this, WaveViewActivity.class));
+                break;
+            case R.id.button_step_qq_view:
+                startActivity(new Intent(this, StepQQViewActivity.class));
                 break;
         }
     }

@@ -10,13 +10,18 @@ import com.lwang.customview.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @Author lwang
+ * @Date 2018/5/22 21:32
+ * @Description 波浪船页面
+ */
 public class WaveViewActivity extends AppCompatActivity {
 
     @BindView(R.id.wave_view)
-    WaveView waveView;
+    WaveView mWaveView;
     @BindView(R.id.img_select)
-    ImageView imgSelect;
-    private WaveHelper waveHelper;
+    ImageView mImgSelect;
+    private WaveHelper mWaveHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +29,15 @@ public class WaveViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wave_view);
         ButterKnife.bind(this);
 
-        waveHelper = new WaveHelper(waveView, ContextCompat.getColor(this, R.color.colorAccent),
-                ContextCompat.getColor(this, R.color.colorAccent), imgSelect);
-        waveHelper.start();
+        mWaveHelper = new WaveHelper(mWaveView, ContextCompat.getColor(this, R.color.colorAccent),
+                ContextCompat.getColor(this, R.color.colorAccent), mImgSelect);
+        mWaveHelper.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        waveHelper.cancel();
+        mWaveHelper.cancel();
     }
 
 }

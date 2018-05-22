@@ -13,10 +13,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * WaveView.class
- *
- * @author lwang
- * @date 2017/11/17.
+ * @Author lwang
+ * @Date 2018/5/22 21:37
+ * @Description 自定义波浪船View
  */
 public class WaveView extends View {
 
@@ -145,7 +144,7 @@ public class WaveView extends View {
     }
 
 
-    public boolean isShowWave(){
+    public boolean isShowWave() {
         return mShowWave;
     }
 
