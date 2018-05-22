@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".waveview.WaveViewActivity" />
-        <activity android:name=".stepqqview.StepQQViewActivity"></activity>
+        <activity android:name=".stepqqview.StepQQViewActivity"/>
+        <activity android:name=".colortrackview.ColorTrackViewActivity"/>
     </application>
 
 </manifest>
