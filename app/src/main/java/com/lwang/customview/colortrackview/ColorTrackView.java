@@ -7,9 +7,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.lwang.customview.R;
+
+import static com.lwang.customview.colortrackview.ColorTrackView.Direction.LEFT_TO_RIGHT;
 
 /**
  * @Author lwang
@@ -17,13 +20,18 @@ import com.lwang.customview.R;
  * @Description 自定义字体变色View 继承TextView
  */
 
-public class ColorTrackView extends TextView{
+public class ColorTrackView extends TextView {
 
     // 默认的字体颜色的画笔
     private Paint mOriginPaint;
     // 改变的字体颜色的画笔
     private Paint mChangePaint;
-    private float mCurrentProgress = 0.5f;
+    private float mCurrentProgress = 0.0f;
+    private Direction mDirection = LEFT_TO_RIGHT;
+
+    public enum Direction {
+        LEFT_TO_RIGHT, RIGHT_TO_LEFT
+    }
 
     public ColorTrackView(Context context) {
         super(context, null);
@@ -68,22 +76,31 @@ public class ColorTrackView extends TextView{
         //根据进度把中间值算出来
         int middle = (int) (mCurrentProgress * getWidth());
 
-        //画不变色的
-        drawText(canvas, 0, middle, mOriginPaint);
+        if (mDirection == LEFT_TO_RIGHT) { //从左画到右
+            //画变色的
+            drawText(canvas, 0, middle, mChangePaint);
 
-        //画变色的
-        drawText(canvas, middle, getWidth(), mChangePaint);
+            //画不变色的
+            drawText(canvas, middle, getWidth(), mOriginPaint);
+        } else { //从右画到左
+            //画变色的
+            drawText(canvas, getWidth() - middle, getWidth(), mChangePaint);
+
+            //画不变色的
+            drawText(canvas, 0, getWidth() - middle, mOriginPaint);
+        }
     }
 
 
     /**
      * 绘制Text
+     *
      * @param canvas
      * @param start
      * @param end
      * @param paint
      */
-    private void drawText(Canvas canvas, int start, int end, Paint paint){
+    private void drawText(Canvas canvas, int start, int end, Paint paint) {
 
         canvas.save();
 
@@ -106,4 +123,22 @@ public class ColorTrackView extends TextView{
         canvas.restore();
     }
 
+    /**
+     * 设置朝向
+     *
+     * @param direction
+     */
+    public void setDirection(Direction direction) {
+        this.mDirection = direction;
+    }
+
+    /**
+     * 设置当前进度
+     *
+     * @param currentProgress
+     */
+    public void setCurrentProgress(float currentProgress) {
+        this.mCurrentProgress = currentProgress;
+        invalidate();
+    }
 }

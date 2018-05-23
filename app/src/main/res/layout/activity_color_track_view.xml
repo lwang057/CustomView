@@ -6,13 +6,31 @@
     android:layout_height="match_parent"
     tools:context="com.lwang.customview.colortrackview.ColorTrackViewActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="从左到右" />
+
+        <Button
+            android:id="@+id/button_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="从右到左" />
+    </LinearLayout>
+
     <com.lwang.customview.colortrackview.ColorTrackView
+        android:id="@+id/color_track_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:text="Hello World!"
-        app:changeColor="@color/colorAccent"
-        app:originColor="@color/colorPrimary"
         android:textSize="26sp"
-        android:layout_centerInParent="true"/>
+        app:changeColor="@color/colorAccent"
+        app:originColor="@color/colorPrimary" />
 
 </RelativeLayout>
