@@ -7,3 +7,6 @@
 
 - StepQQView仿QQ运动步数
 <img src="gif/step_qq_view.gif">
+
+- ColorTrackView字体渐变色
+<img src="gif/color_track_view.gif">

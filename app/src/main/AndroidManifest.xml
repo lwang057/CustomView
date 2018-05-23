@@ -19,6 +19,7 @@
         <activity android:name=".waveview.WaveViewActivity" />
         <activity android:name=".stepqqview.StepQQViewActivity"/>
         <activity android:name=".colortrackview.ColorTrackViewActivity"/>
+        <activity android:name=".lettersideview.LetterSideViewActivity"/>
     </application>
 
 </manifest>

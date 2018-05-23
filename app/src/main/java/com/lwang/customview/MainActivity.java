@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.lwang.customview.colortrackview.ColorTrackViewActivity;
+import com.lwang.customview.lettersideview.LetterSideViewActivity;
 import com.lwang.customview.stepqqview.StepQQViewActivity;
 import com.lwang.customview.waveview.WaveViewActivity;
 
@@ -21,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.button_wave_view, R.id.button_step_qq_view, R.id.button_color_track_view})
+    @OnClick({R.id.button_wave_view, R.id.button_step_qq_view, R.id.button_color_track_view,
+            R.id.button_letter_side_view})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_wave_view:
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.button_color_track_view:
                 startActivity(new Intent(this, ColorTrackViewActivity.class));
+                break;
+                case R.id.button_letter_side_view:
+                startActivity(new Intent(this, LetterSideViewActivity.class));
                 break;
         }
     }

@@ -21,7 +21,13 @@
     <Button
         android:id="@+id/button_color_track_view"
         android:layout_width="match_parent"
-        android:text="ColorTrackView字体变色"
+        android:text="ColorTrackView字体渐变色"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_letter_side_view"
+        android:layout_width="match_parent"
+        android:text="LetterSideView字母索引列表"
         android:layout_height="wrap_content" />
 
 </LinearLayout>
