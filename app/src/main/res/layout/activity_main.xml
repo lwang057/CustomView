@@ -15,7 +15,7 @@
     <Button
         android:id="@+id/button_step_qq_view"
         android:layout_width="match_parent"
-        android:text="StepQQView仿QQ运动步数"
+        android:text="StepQQViewQQ运动步数"
         android:layout_height="wrap_content" />
 
     <Button
@@ -30,4 +30,9 @@
         android:text="LetterSideView字母索引列表"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/button_sliding_menu_view"
+        android:layout_width="match_parent"
+        android:text="SlidingMenuView侧滑菜单"
+        android:layout_height="wrap_content" />
 </LinearLayout>
