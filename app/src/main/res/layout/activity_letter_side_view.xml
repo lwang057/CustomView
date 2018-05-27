@@ -6,10 +6,25 @@
     android:layout_height="match_parent"
     tools:context="com.lwang.customview.lettersideview.LetterSideViewActivity">
 
-    <com.lwang.customview.lettersideview.LetterSideView
+    <TextView
+        android:id="@+id/tv"
+        android:visibility="gone"
+        android:background="@drawable/letter_textview_back"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="A"
+        android:textColor="@color/write"
+        android:textSize="26sp" />
+
+    <com.lwang.customview.lettersideview.LetterSideView
+        android:id="@+id/letter_side_view"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:textColor="@color/colorAccent"
-        app:textSize="16sp" />
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
+        app:normalTextColor="@color/colorAccent"
+        app:pressedTextColor="@color/colorPrimaryDark"
+        app:textSize="14sp" />
 
 </RelativeLayout>

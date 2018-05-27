@@ -10,3 +10,6 @@
 
 - ColorTrackView字体渐变色
 <img src="gif/color_track_view.gif">
+
+- ColorTrackView字母索引列表
+<img src="gif/letter_side_view.gif">

@@ -14,7 +14,8 @@
     </declare-styleable>
 
     <declare-styleable name="LetterSideView">
-        <attr name="textColor" format="color"/>
+        <attr name="pressedTextColor" format="color"/>
+        <attr name="normalTextColor" format="color"/>
         <attr name="textSize" format="dimension"/>
     </declare-styleable>
 </resources>
