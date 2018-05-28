@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.lwang.customview.slidingmenuview.SlidingMenuView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/sliding_menu_view"
     tools:context="com.lwang.customview.slidingmenuview.SlidingMenuViewActivity">
 
-    <com.lwang.customview.slidingmenuview.SlidingMenuView
-        android:id="@+id/sliding_menu_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <include layout="@layout/activity_color_track_view"/>
 
-</RelativeLayout>
+        <include layout="@layout/activity_color_track_view"/>
+    </LinearLayout>
+
+</com.lwang.customview.slidingmenuview.SlidingMenuView>
