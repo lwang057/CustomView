@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.button_wave_view, R.id.button_step_qq_view, R.id.button_color_track_view,
-            R.id.button_letter_side_view, R.id.button_sliding_menu_view})
+            R.id.button_letter_side_view, R.id.button_sliding_menu_view, R.id.button1,
+            R.id.button2, R.id.button3, R.id.button4, R.id.button5})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_wave_view:
@@ -39,7 +40,19 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_letter_side_view:
                 startActivity(new Intent(this, LetterSideViewActivity.class));
                 break;
-            case R.id.button_sliding_menu_view:
+            case R.id.button1:
+                startActivity(new Intent(this, SlidingMenuViewActivity.class));
+                break;
+            case R.id.button2:
+                startActivity(new Intent(this, SlidingMenuViewActivity.class));
+                break;
+            case R.id.button3:
+                startActivity(new Intent(this, SlidingMenuViewActivity.class));
+                break;
+            case R.id.button4:
+                startActivity(new Intent(this, SlidingMenuViewActivity.class));
+                break;
+            case R.id.button5:
                 startActivity(new Intent(this, SlidingMenuViewActivity.class));
                 break;
         }

@@ -6,33 +6,74 @@
     android:orientation="vertical"
     tools:context="com.lwang.customview.MainActivity">
 
-    <Button
-        android:id="@+id/button_wave_view"
+    <ScrollView
         android:layout_width="match_parent"
-        android:text="WaveView波浪船"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_step_qq_view"
-        android:layout_width="match_parent"
-        android:text="StepQQViewQQ运动步数"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button_color_track_view"
-        android:layout_width="match_parent"
-        android:text="ColorTrackView字体渐变色"
-        android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/button_wave_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WaveView波浪船" />
 
-    <Button
-        android:id="@+id/button_letter_side_view"
-        android:layout_width="match_parent"
-        android:text="LetterSideView字母索引列表"
-        android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/button_step_qq_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="StepQQViewQQ运动步数" />
 
-    <Button
-        android:id="@+id/button_sliding_menu_view"
-        android:layout_width="match_parent"
-        android:text="SlidingMenuView侧滑菜单"
-        android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/button_color_track_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ColorTrackView字体渐变色" />
+
+            <Button
+                android:id="@+id/button_letter_side_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LetterSideView字母索引列表" />
+
+            <Button
+                android:id="@+id/button_sliding_menu_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SlidingMenuView侧滑菜单" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button1" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button2" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button3" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button4" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button5" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
