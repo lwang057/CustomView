@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.lwang.customview.colortrackview.ColorTrackViewActivity;
+import com.lwang.customview.indicatorseekbar.IndicatorSeekBarActivity;
 import com.lwang.customview.lettersideview.LetterSideViewActivity;
 import com.lwang.customview.slidingmenuview.SlidingMenuViewActivity;
 import com.lwang.customview.stepqqview.StepQQViewActivity;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.button_wave_view, R.id.button_step_qq_view, R.id.button_color_track_view,
-            R.id.button_letter_side_view, R.id.button_sliding_menu_view, R.id.button1,
+            R.id.button_letter_side_view, R.id.button_sliding_menu_view, R.id.button_indicator_seekbar,
             R.id.button2, R.id.button3, R.id.button4, R.id.button5})
     public void onClick(View v) {
         switch (v.getId()) {
@@ -40,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_letter_side_view:
                 startActivity(new Intent(this, LetterSideViewActivity.class));
                 break;
-            case R.id.button1:
+            case R.id.button_sliding_menu_view:
                 startActivity(new Intent(this, SlidingMenuViewActivity.class));
+                break;
+            case R.id.button_indicator_seekbar:
+                startActivity(new Intent(this, IndicatorSeekBarActivity.class));
                 break;
             case R.id.button2:
                 startActivity(new Intent(this, SlidingMenuViewActivity.class));

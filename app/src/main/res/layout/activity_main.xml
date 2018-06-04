@@ -46,10 +46,10 @@
                 android:text="SlidingMenuView侧滑菜单" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/button_indicator_seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="button1" />
+                android:text="INDICATOR_SEEKBAR自定义进度条" />
 
             <Button
                 android:id="@+id/button2"
