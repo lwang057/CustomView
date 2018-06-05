@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.lwang.customview.indicatorseekbar.IndicatorSeekBarActivity">
 
+    <com.lwang.customview.indicatorseekbar.IndicatorSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        app:bitmap="@mipmap/lrc_play" />
+
 </RelativeLayout>

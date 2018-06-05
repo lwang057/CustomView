@@ -22,4 +22,8 @@
     <declare-styleable name="SlidingMenuView">
         <attr name="menuRightMargin" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="IndicatorSeekBar">
+    <attr name="bitmap" format="reference"/>
+</declare-styleable>
 </resources>
