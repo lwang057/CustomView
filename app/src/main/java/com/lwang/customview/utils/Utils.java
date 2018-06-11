@@ -1,6 +1,8 @@
 package com.lwang.customview.utils;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * @Author lwang
@@ -15,4 +17,9 @@ public class Utils {
     public static void log(String s) {
         Log.i(TAG, s);
     }
+
+    public static void showToast(Context context, String msg){
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    }
+
 }
