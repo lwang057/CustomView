@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-        <include layout="@layout/activity_color_track_view"/>
+        <include layout="@layout/layout_home_menu" />
 
-        <include layout="@layout/activity_color_track_view"/>
+        <include layout="@layout/layout_home_content" />
     </LinearLayout>
 
 </com.lwang.customview.slidingmenuview.SlidingMenuView>
