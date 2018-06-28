@@ -17,14 +17,10 @@ import butterknife.ButterKnife;
 
 public class SlidingMenuViewActivity extends AppCompatActivity {
 
-    @BindView(R.id.sliding_menu_view)
-    SlidingMenuView mSlidingMenuView;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sliding_menu_view);
-        ButterKnife.bind(this);
     }
 
 
