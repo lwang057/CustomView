@@ -2,6 +2,7 @@ package com.lwang.customview.slidingmenuview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 
 import com.lwang.customview.R;
+import com.lwang.customview.utils.Utils;
 
 /**
  * @Author lwang
@@ -96,6 +98,39 @@ public class SlidingMenuView extends HorizontalScrollView {
             return true;
         }
         return super.onTouchEvent(ev);
+    }
+
+    // 4.处理右边的缩放，左边的缩放和透明度，需要不断的获取当前滚动的位置
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+
+        Utils.log("left:::" + l);
+        // 计算一个梯度值 scale 变化是: 左1 <---> 右0
+        float scale = 1f * l / mMenuWidth;
+        Utils.log("scale:::" + scale);
+
+        // 设置右边的缩放,默认是以中心点缩放: 最小是 0.7f, 最大是 1f
+        float rightScale = 0.7f + 0.3f * scale;
+        ViewCompat.setPivotX(mContentView, 0);
+        ViewCompat.setPivotY(mContentView, mContentView.getMeasuredHeight() / 2);
+        ViewCompat.setScaleX(mContentView, rightScale);
+        ViewCompat.setScaleY(mContentView, rightScale);
+
+        // 菜单的透明度是 半透明到完全透明  0.5f - 1.0f
+        float leftAlpha = 0.5f + (1 - scale) * 0.5f;
+        ViewCompat.setAlpha(mMenuView, leftAlpha);
+
+        // 菜单的缩放 0.7f - 1.0f
+        float leftScale = 0.7f + (1 - scale) * 0.3f;
+        ViewCompat.setScaleX(mMenuView, leftScale);
+        ViewCompat.setScaleY(mMenuView, leftScale);
+
+        // 最后一个效果 退出这个按钮刚开始是在右边，安装我们目前的方式永远都是在左边
+        // 设置平移，先看一个抽屉效果
+//        ViewCompat.setTranslationX(mMenuView,l);
+        // 平移 l*0.7f
+        ViewCompat.setTranslationX(mMenuView, 0.25f * l);
     }
 
     /**
