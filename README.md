@@ -13,3 +13,6 @@
 
 - ColorTrackView字母索引列表
 <img src="gif/letter_side_view.gif">
+
+- SlidingMenuView侧滑菜单
+<img src="gif/sliding_menu_view.gif">
