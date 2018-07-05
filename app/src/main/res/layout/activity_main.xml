@@ -52,10 +52,10 @@
                 android:text="INDICATOR_SEEKBAR自定义进度条" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_lock_pattern"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="button2" />
+                android:text="LOCK_PATTERN_VIEW九宫格锁屏" />
 
             <Button
                 android:id="@+id/button3"
