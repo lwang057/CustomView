@@ -15,22 +15,33 @@ import com.lwang.customview.R;
 import static com.lwang.customview.colortrackview.ColorTrackView.Direction.LEFT_TO_RIGHT;
 
 /**
- * @Author lwang
- * @Date 2018/5/22 22:29
- * @Description 自定义字体变色View 继承TextView
+ * @author lwang
+ * @date 2018/5/22
+ * @description 自定义字体变色View 继承TextView
  */
 
 public class ColorTrackView extends TextView {
 
-    // 默认的字体颜色的画笔
+    /**
+     * 默认的字体颜色的画笔
+     */
     private Paint mOriginPaint;
-    // 改变的字体颜色的画笔
+    /**
+     * 改变的字体颜色的画笔
+     */
     private Paint mChangePaint;
     private float mCurrentProgress = 0.0f;
     private Direction mDirection = LEFT_TO_RIGHT;
 
     public enum Direction {
-        LEFT_TO_RIGHT, RIGHT_TO_LEFT
+        /**
+         * 从左到右
+         */
+        LEFT_TO_RIGHT,
+        /**
+         * 从左到右
+         */
+        RIGHT_TO_LEFT
     }
 
     public ColorTrackView(Context context) {
@@ -76,7 +87,8 @@ public class ColorTrackView extends TextView {
         //根据进度把中间值算出来
         int middle = (int) (mCurrentProgress * getWidth());
 
-        if (mDirection == LEFT_TO_RIGHT) { //从左画到右
+        //从左画到右
+        if (mDirection == LEFT_TO_RIGHT) {
             //画变色的
             drawText(canvas, 0, middle, mChangePaint);
 

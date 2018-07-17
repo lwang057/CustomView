@@ -15,9 +15,9 @@ import android.widget.SeekBar;
 import com.lwang.customview.R;
 
 /**
- * @Author lwang
- * @Date 2018/6/4 21:46
- * @Description 自定义带图标的SeekBar
+ * @author lwang
+ * @date 2018/6/4 21:46
+ * @description 自定义带图标的SeekBar
  */
 
 public class IndicatorSeekBar extends SeekBar {

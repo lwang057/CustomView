@@ -15,14 +15,17 @@ import com.lwang.customview.R;
 import com.lwang.customview.utils.Utils;
 
 /**
- * @Author lwang
- * @Date 2018/5/27 23:35
- * @Description 侧滑菜单
+ * @author lwang
+ * @date 2018/5/27
+ * @description 侧滑菜单
  */
 
 public class SlidingMenuView extends HorizontalScrollView {
 
-    private int mMenuWidth; //菜单宽度
+    /**
+     * 菜单宽度
+     */
+    private int mMenuWidth;
     private View mMenuView, mContentView;
 
     public SlidingMenuView(Context context) {
@@ -41,8 +44,10 @@ public class SlidingMenuView extends HorizontalScrollView {
         typedArray.recycle();
     }
 
-    // 1.指定宽高 （宽度不对乱套了）
-    // 这个方法是布局解析完毕也就是 XML 布局文件解析完毕
+    /**
+     * 1.指定宽高 （宽度不对乱套了）
+     * 这个方法是布局解析完毕也就是 XML 布局文件解析完毕
+     */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -69,14 +74,18 @@ public class SlidingMenuView extends HorizontalScrollView {
         mContentView.setLayoutParams(contentViewParams);
     }
 
-    // 2. 初始化进来是关闭
+    /**
+     * 2. 初始化进来是关闭
+     */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         scrollTo(mMenuWidth, 0);
     }
 
-    // 3.手指抬起是二选一，要么关闭要么打开
+    /**
+     * 3.手指抬起是二选一，要么关闭要么打开
+     */
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
 
@@ -86,7 +95,8 @@ public class SlidingMenuView extends HorizontalScrollView {
         if (ev.getAction() == MotionEvent.ACTION_UP) {
 
             // 只需要管手指抬起 ，根据我们当前滚动的距离来判断
-            float currentScrollX = getScrollX(); //往左滑动时是正值，往右是负值
+            // 往左滑动时是正值，往右是负值
+            float currentScrollX = getScrollX();
             if (currentScrollX > mMenuWidth / 2) {
                 //关闭
                 closeMenu();
@@ -100,7 +110,9 @@ public class SlidingMenuView extends HorizontalScrollView {
         return super.onTouchEvent(ev);
     }
 
-    // 4.处理右边的缩放，左边的缩放和透明度，需要不断的获取当前滚动的位置
+    /**
+     * 4.处理右边的缩放，左边的缩放和透明度，需要不断的获取当前滚动的位置
+     */
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
@@ -129,6 +141,7 @@ public class SlidingMenuView extends HorizontalScrollView {
         // 最后一个效果 退出这个按钮刚开始是在右边，安装我们目前的方式永远都是在左边
         // 设置平移，先看一个抽屉效果
 //        ViewCompat.setTranslationX(mMenuView,l);
+
         // 平移 l*0.7f
         ViewCompat.setTranslationX(mMenuView, 0.25f * l);
     }
@@ -137,7 +150,8 @@ public class SlidingMenuView extends HorizontalScrollView {
      * 打开菜单 滚动到 0 的位置
      */
     private void openMenu() {
-        smoothScrollTo(0, 0); //相对于scrollTo(0, 0); smoothScrollTo带动画
+        //相对于scrollTo(0, 0); smoothScrollTo带动画
+        smoothScrollTo(0, 0);
     }
 
     /**

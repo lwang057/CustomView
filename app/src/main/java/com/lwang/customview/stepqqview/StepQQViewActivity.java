@@ -12,9 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @Author lwang
- * @Date 2018/5/22 21:56
- * @Description 仿QQ运动步数
+ * @author lwang
+ * @date 2018/5/22
+ * @description 仿QQ运动步数
  */
 
 public class StepQQViewActivity extends AppCompatActivity {
@@ -33,7 +33,8 @@ public class StepQQViewActivity extends AppCompatActivity {
         // 属性动画来实时改变位置
         ValueAnimator valueAnimator = ObjectAnimator.ofFloat(0, 3000);
         valueAnimator.setDuration(1000);
-        valueAnimator.setInterpolator(new DecelerateInterpolator()); //设置插值器，在动画开始的地方快然后慢
+        //设置插值器，在动画开始的地方快然后慢
+        valueAnimator.setInterpolator(new DecelerateInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

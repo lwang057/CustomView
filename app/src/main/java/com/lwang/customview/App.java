@@ -7,9 +7,9 @@ import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
- * @Author lwang
- * @Date 2018/7/5 22:45
- * @Description
+ * @author lwang
+ * @date 2018/7/5
+ * @description
  */
 
 public class App extends Application {
@@ -19,7 +19,7 @@ public class App extends Application {
         super.onCreate();
         Logger.addLogAdapter(new AndroidLogAdapter());
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {//1
+        if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
             return;

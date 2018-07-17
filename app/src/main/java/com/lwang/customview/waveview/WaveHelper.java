@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author lwang
- * @Date 2018/5/22 21:38
- * @Description WaveHelper类
+ * @author lwang
+ * @date 2018/5/22
+ * @description WaveHelper类
  */
 public class WaveHelper {
 
@@ -26,11 +26,15 @@ public class WaveHelper {
     private boolean mHasStart = false;
     private boolean mIsFirst = false;
 
-    //水位高低 waterLevelRatio
+    /**
+     * 水位高低 waterLevelRatio
+     */
     private float mDefaultWaterLevelRatioF = 0.8f;
     private float mDefaultWaterLevelRatioT = 0.8f;
 
-    //波浪大小振幅 amplitudeRatio
+    /**
+     * 波浪大小振幅 amplitudeRatio
+     */
     private float mDefaultAmplitudeRatioF = 0.05f;
     private float mDefaultAmplitudeRatioT = 0.05f;
 
@@ -96,7 +100,6 @@ public class WaveHelper {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 //获取sin函数的height，更新mFloatView
                 float value = mWaveView.getSinHeight() - 0.9f * mFloatView.getMeasuredHeight();
-//                mFloatView.setRotation(value + mDefaultFloatViewRotation);
                 mFloatView.setTranslationY(value);
                 mFloatView.invalidate();
             }

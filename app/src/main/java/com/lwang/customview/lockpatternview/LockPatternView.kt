@@ -6,9 +6,9 @@ import android.util.AttributeSet
 import android.view.View
 
 /**
- * @Author lwang
- * @Date 2018/7/4 23:15
- * @Description
+ * @author lwang
+ * @date 2018/7/4
+ * @description
  */
 class LockPatternView : View {
 

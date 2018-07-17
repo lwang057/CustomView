@@ -12,9 +12,9 @@ import android.view.View;
 import com.lwang.customview.R;
 
 /**
- * @Author lwang
- * @Date 2018/5/22 21:58
- * @Description 仿QQ运动步数
+ * @author lwang
+ * @date 2018/5/22
+ * @description 仿QQ运动步数
  */
 
 public class StepQQView extends View {
@@ -28,12 +28,21 @@ public class StepQQView extends View {
     private int mStepMax;
     private int mCurrentStep;
 
-    //通过代码new出来时调用
+    /**
+     * 通过代码new出来时调用
+     *
+     * @param context
+     */
     public StepQQView(Context context) {
         super(context);
     }
 
-    //通过布局使用时调用
+    /**
+     * 通过布局使用时调用
+     *
+     * @param context
+     * @param attrs
+     */
     public StepQQView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -67,7 +76,8 @@ public class StepQQView extends View {
         paint.setColor(color);
         paint.setStrokeWidth(mBorderWidth);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);//画出空心
+        //画出空心
+        paint.setStyle(Paint.Style.STROKE);
         return paint;
     }
 
@@ -100,7 +110,9 @@ public class StepQQView extends View {
         canvas.drawArc(rectF, 135, 270, false, mOuterPaint);
 
         //画内圆弧  百分比，不能写死
-        if (mStepMax == 0) return;
+        if (mStepMax == 0) {
+            return;
+        }
 
         float sweepAngle = (float) mCurrentStep / mStepMax;
         canvas.drawArc(rectF, 135, sweepAngle * 270, false, mInnerPaint);
@@ -129,17 +141,19 @@ public class StepQQView extends View {
 
     /**
      * 设置最大步数
+     *
      * @param stepMax
      */
-    public synchronized void setStepMax(int stepMax){
+    public synchronized void setStepMax(int stepMax) {
         this.mStepMax = stepMax;
     }
 
     /**
      * 设置当前步数
+     *
      * @param cuttentMax
      */
-    public synchronized void setCuttentStep(int cuttentMax){
+    public synchronized void setCuttentStep(int cuttentMax) {
         this.mCurrentStep = cuttentMax;
         invalidate(); //不断去绘制-->调用onDraw()方法
     }

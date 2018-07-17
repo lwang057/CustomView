@@ -11,9 +11,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @Author lwang
- * @Date 2018/5/22 21:32
- * @Description 波浪船页面
+ * @author lwang
+ * @date 2018/5/22
+ * @description 波浪船页面
  */
 public class WaveViewActivity extends AppCompatActivity {
 

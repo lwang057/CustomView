@@ -13,9 +13,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * @Author lwang
- * @Date 2018/5/22 21:37
- * @Description 自定义波浪船View
+ * @author lwang
+ * @date 2018/5/22
+ * @description 自定义波浪船View
  */
 public class WaveView extends View {
 
@@ -28,14 +28,9 @@ public class WaveView extends View {
     public static final int DEFAULT_FRONT_WAVE_COLOR = Color.parseColor("#80b7d28d");
 
 
-    // if true, the shader will display the wave
     private boolean mShowWave;
-
-    // shader containing repeated waves
     private BitmapShader mWaveShader;
-    // shader matrix
     private Matrix mShaderMatrix;
-    // paint to draw wave
     private Paint mViewPaint;
 
     private float mDefaultAmplitude;

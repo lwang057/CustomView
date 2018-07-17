@@ -12,9 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @Author lwang
- * @Date 2018/5/23 22:15
- * @Description 字母索引列表页面
+ * @author lwang
+ * @date 2018/5/23
+ * @description 字母索引列表页面
  */
 
 public class LetterSideViewActivity extends AppCompatActivity {

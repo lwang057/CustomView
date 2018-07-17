@@ -15,9 +15,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * @Author lwang
- * @Date 2018/5/22 22:24
- * @Description 字体变色页面
+ * @author lwang
+ * @date 2018/5/22
+ * @description 字体变色页面
  */
 
 public class ColorTrackViewActivity extends AppCompatActivity {
@@ -40,6 +40,8 @@ public class ColorTrackViewActivity extends AppCompatActivity {
                 break;
             case R.id.button_right:
                 startAnimator(ColorTrackView.Direction.RIGHT_TO_LEFT);
+                break;
+            default:
                 break;
         }
     }

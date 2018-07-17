@@ -15,9 +15,9 @@ import com.lwang.customview.R;
 import com.lwang.customview.utils.Utils;
 
 /**
- * @Author lwang
- * @Date 2018/5/23 22:14
- * @Description 自定义字母索引列表的view
+ * @author lwang
+ * @date 2018/5/23
+ * @description 自定义字母索引列表的view
  */
 
 public class LetterSideView extends View {
@@ -123,11 +123,13 @@ public class LetterSideView extends View {
                 float y = event.getY();
                 mCurrentPosition = (int) (y / itemHeight);
 
-                if (mCurrentPosition < 0)
+                if (mCurrentPosition < 0) {
                     mCurrentPosition = 0;
+                }
 
-                if (mCurrentPosition > mLetter.length - 1)
+                if (mCurrentPosition > mLetter.length - 1) {
                     mCurrentPosition = mLetter.length - 1;
+                }
 
                 if (onLetterTouchListener != null) {
                     onLetterTouchListener.touch(mLetter[mCurrentPosition], true);
@@ -139,6 +141,8 @@ public class LetterSideView extends View {
                 if (onLetterTouchListener != null) {
                     onLetterTouchListener.touch(mLetter[mCurrentPosition], false);
                 }
+                break;
+            default:
                 break;
         }
         return true;
@@ -157,6 +161,12 @@ public class LetterSideView extends View {
     }
 
     public interface OnLetterTouchListener {
+        /**
+         * 接口的回调
+         *
+         * @param letter
+         * @param isTouch
+         */
         void touch(CharSequence letter, boolean isTouch);
     }
 

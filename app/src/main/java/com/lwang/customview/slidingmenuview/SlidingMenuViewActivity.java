@@ -10,9 +10,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @Author lwang
- * @Date 2018/5/27 23:36
- * @Description 侧滑菜单页面
+ * @author lwang
+ * @date 2018/5/27
+ * @description 侧滑菜单页面
  */
 
 public class SlidingMenuViewActivity extends AppCompatActivity {

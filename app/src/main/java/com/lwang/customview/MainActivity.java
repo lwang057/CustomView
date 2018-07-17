@@ -19,6 +19,12 @@ import com.squareup.leakcanary.RefWatcher;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author lwang
+ * @date 2018/7/5
+ * @description
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -69,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.button5:
                 startActivity(new Intent(this, SlidingMenuViewActivity.class));
+                break;
+            default:
                 break;
         }
     }

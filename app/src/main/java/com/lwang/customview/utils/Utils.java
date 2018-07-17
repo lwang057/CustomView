@@ -5,9 +5,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 /**
- * @Author lwang
- * @Date 2018/5/27 12:48
- * @Description 工具类
+ * @author lwang
+ * @date 2018/5/27
+ * @description 工具类
  */
 
 public class Utils {

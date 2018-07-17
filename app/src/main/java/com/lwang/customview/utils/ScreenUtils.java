@@ -9,15 +9,9 @@ import android.view.View;
 import android.view.WindowManager;
 
 /**
- * 获得屏幕相关的辅助类
- *
- * @author zhy
- */
-
-/**
- * @Author lwang
- * @Date 2018/7/3 21:18
- * @Description 获得屏幕相关的辅助类
+ * @author lwang
+ * @date 2018/7/3
+ * @description 获得屏幕相关的辅助类
  */
 
 public class ScreenUtils {

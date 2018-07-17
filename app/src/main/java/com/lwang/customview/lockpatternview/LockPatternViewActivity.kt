@@ -5,9 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import com.lwang.customview.R
 
 /**
- * @Author lwang
- * @Date 2018/7/4 23:16
- * @Description 九宫格锁屏页面
+ * @author lwang
+ * @date 2018/7/4
+ * @description 九宫格锁屏页面
  */
 class LockPatternViewActivity :AppCompatActivity() {
 

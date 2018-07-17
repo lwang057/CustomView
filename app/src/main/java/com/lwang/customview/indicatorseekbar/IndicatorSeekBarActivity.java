@@ -9,9 +9,9 @@ import com.lwang.customview.R;
 import butterknife.ButterKnife;
 
 /**
- * @Author lwang
- * @Date 2018/6/4 21:47
- * @Description 自定义带图标的SeekBar页面
+ * @author lwang
+ * @date 2018/6/4
+ * @description 自定义带图标的SeekBar页面
  */
 
 public class IndicatorSeekBarActivity extends AppCompatActivity {
