@@ -1,8 +1,8 @@
 package com.lwang.customview;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lwang.customview.colortrackview.ColorTrackViewActivity;
@@ -12,9 +12,6 @@ import com.lwang.customview.lockpatternview.LockPatternViewActivity;
 import com.lwang.customview.slidingmenuview.SlidingMenuViewActivity;
 import com.lwang.customview.stepqqview.StepQQViewActivity;
 import com.lwang.customview.waveview.WaveViewActivity;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
-import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,13 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        Logger.d("debug");
-        Logger.e("error");
-        Logger.w("warning");
-        Logger.v("verbose");
-        Logger.i("information");
-        Logger.wtf("What a Terrible Failure");
     }
 
     @OnClick({R.id.button_wave_view, R.id.button_step_qq_view, R.id.button_color_track_view,

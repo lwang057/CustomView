@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.SeekBar;
 
 import com.lwang.customview.R;
+import com.lwang.customview.utils.Utils;
+import com.orhanobut.logger.Logger;
 
 /**
  * @author lwang
@@ -24,6 +26,8 @@ public class IndicatorSeekBar extends SeekBar {
 
     private Bitmap mBitmap;
     private Paint mPaint;
+    private int max = 327314;
+    private double progress = 1000 * 179;
 
     public IndicatorSeekBar(Context context) {
         super(context);
@@ -32,6 +36,7 @@ public class IndicatorSeekBar extends SeekBar {
     public IndicatorSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.IndicatorSeekBar);
+
         // 我们要在布局中设置的就是一张图片，所以此处强转为 BitmapDrawable
         BitmapDrawable drawableBg = (BitmapDrawable) ta.getDrawable(R.styleable.IndicatorSeekBar_bitmap);
         mBitmap = drawableBg.getBitmap();
@@ -46,27 +51,19 @@ public class IndicatorSeekBar extends SeekBar {
         super.onDraw(canvas);
 
         double i = progress / max;
-        Log.i("ss", "i:::" + i);
-
         int width = getWidth() - 50;
-        Log.i("ss", "width:::" + width);
-
         double v = width * i;
-        Log.i("ss", "v:::" + v);
-
+        Utils.log("i:::" + i + ",width:::" + width + ",v:::" + v);
 
         // 绘制图片
         // 参数2 是图片的左边距
         // 参数3 是图片的上边距
-        canvas.drawBitmap(mBitmap, (float) v, -27, mPaint);
+        canvas.drawBitmap(mBitmap, (float) v, 6, mPaint);
     }
-
-    private int max=327314;
-    private double progress = 1000 * 33;
 
     public void setMaxNum(int maxNum) {
         this.max = maxNum;
-        Log.i("ss", "max:::" + max);
+        Utils.log("max:::" + max);
     }
 
 }
