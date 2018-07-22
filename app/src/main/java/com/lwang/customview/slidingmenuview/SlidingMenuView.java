@@ -2,6 +2,7 @@ package com.lwang.customview.slidingmenuview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.lwang.customview.R;
 import com.lwang.customview.utils.Utils;
@@ -26,7 +29,7 @@ public class SlidingMenuView extends HorizontalScrollView {
      * 菜单宽度
      */
     private int mMenuWidth;
-    private View mMenuView, mContentView;
+    private View mMenuView, mContentView, mShadowView;
 
     public SlidingMenuView(Context context) {
         super(context);
@@ -72,6 +75,24 @@ public class SlidingMenuView extends HorizontalScrollView {
         ViewGroup.LayoutParams contentViewParams = mContentView.getLayoutParams();
         contentViewParams.width = getScreenWidth(getContext());
         mContentView.setLayoutParams(contentViewParams);
+
+        //--仿QQ侧滑效果
+        //--1.先将布局从容器中移除掉
+//        container.removeView(mContentView);
+
+        //--2.在外面套一层阴影
+//        RelativeLayout con = new RelativeLayout(getContext());
+//        con.addView(mContentView);
+//        mShadowView = new View(getContext());
+//        mShadowView.setBackgroundColor(Color.parseColor("#000000"));
+//        con.addView(mShadowView);
+
+        //--3.最后把容器放回原来的位置
+//        ViewGroup.LayoutParams contentViewParams = mContentView.getLayoutParams();
+//        contentViewParams.width = getScreenWidth(getContext());
+//        mContentView.setLayoutParams(contentViewParams);
+//        container.addView(con);
+//        mShadowView.setAlpha(0.0f);
     }
 
     /**
@@ -121,6 +142,11 @@ public class SlidingMenuView extends HorizontalScrollView {
         // 计算一个梯度值 scale 变化是: 左1 <---> 右0
         float scale = 1f * l / mMenuWidth;
         Utils.log("scale:::" + scale);
+
+        //--仿QQ侧滑效果
+        //--4.控制阴影 0--1
+//        float alphaScale = 1 - scale;
+//        mShadowView.setAlpha(alphaScale);
 
         // 设置右边的缩放,默认是以中心点缩放: 最小是 0.7f, 最大是 1f
         float rightScale = 0.7f + 0.3f * scale;
