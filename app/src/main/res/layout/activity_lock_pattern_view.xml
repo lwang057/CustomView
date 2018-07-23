@@ -6,6 +6,8 @@
     android:background="#ffffff"
     tools:context="com.lwang.customview.waveview.WaveViewActivity">
 
-
+    <com.lwang.customview.lockpatternview.LockPatternView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
