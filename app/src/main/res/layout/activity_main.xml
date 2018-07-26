@@ -58,10 +58,10 @@
                 android:text="LOCK_PATTERN_VIEW九宫格锁屏" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_translation_behavior"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="button3" />
+                android:text="TRANSLATION_BEHAVIOR" />
 
             <Button
                 android:id="@+id/button4"

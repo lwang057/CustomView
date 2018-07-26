@@ -24,6 +24,7 @@
         <activity android:name=".slidingmenuview.SlidingMenuViewActivity" />
         <activity android:name=".indicatorseekbar.IndicatorSeekBarActivity" />
         <activity android:name=".lockpatternview.LockPatternViewActivity" />
+        <activity android:name=".translationbehavior.TranslationBehaviorActivity"/>
     </application>
 
 </manifest>
