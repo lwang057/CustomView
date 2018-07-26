@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
-import android.graphics.Point
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -27,15 +26,21 @@ class LockPatternView : View {
     private var mIsInit = false
 
     /**
+     * 是否要显示错误状态
+     */
+    private var mIsErrorStatus = false
+
+    /**
      * 外圆半径
      */
     private var mDotRadius: Int = 0
+
     // 画笔
-    private lateinit var mLinePaint: Paint
-    private lateinit var mPressedPaint: Paint
-    private lateinit var mErrorPaint: Paint
-    private lateinit var mNormalPaint: Paint
-    private lateinit var mArrowPaint: Paint
+    private lateinit var mPressedPaint: Paint //按下画笔
+    private lateinit var mErrorPaint: Paint //错误画笔
+    private lateinit var mNormalPaint: Paint //正常画笔
+    private lateinit var mLinePaint: Paint //线画笔
+    private lateinit var mArrowPaint: Paint //箭头画笔
     // 颜色
     private val mOuterPressedColor = 0xff8cbad8.toInt()
     private val mInnerPressedColor = 0xff0596f6.toInt()
@@ -52,6 +57,69 @@ class LockPatternView : View {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
 
+    private var mListener: LockPatternListener? = null
+
+    /**
+     * 滑动过后的密码的回调
+     */
+    fun setLockPatternListener(listener: LockPatternListener) {
+        this.mListener = listener
+    }
+
+    interface LockPatternListener {
+        fun lock(password: String)
+    }
+
+
+    /**
+     * 在手指提起时，将密码回调给开发者
+     */
+    private fun lockCallBack() {
+        var password = ""
+        for (selectPoint in mSelectPoints) {
+            password += selectPoint.index
+        }
+        mListener!!.lock(password)
+    }
+
+
+    /**
+     * 显示错误状态
+     */
+    fun showSelectError() {
+        for (selectPoint in mSelectPoints) {
+            selectPoint.setStatusError()
+            mIsErrorStatus = true
+        }
+
+        postDelayed({
+            clearSelectPoints()
+            mIsErrorStatus = false
+            invalidate()
+        }, 800)
+    }
+
+    /**
+     * 清空所有的点（内部使用）
+     */
+    private fun clearSelectPoints() {
+        for (selectPoint in mSelectPoints) {
+            selectPoint.setStatusNormal()
+        }
+        mSelectPoints.clear()
+    }
+
+    /**
+     * 清空所有的点（开发者使用）
+     */
+    fun clearSelect() {
+        for (selectPoint in mSelectPoints) {
+            selectPoint.setStatusNormal()
+        }
+        mSelectPoints.clear()
+        invalidate()
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
@@ -64,90 +132,6 @@ class LockPatternView : View {
 
         //绘制九宫格
         drawShow(canvas)
-    }
-
-    /**
-     * 绘制九个空格显示
-     */
-    private fun drawShow(canvas: Canvas) {
-
-        for (i in 0..2) {
-            for (point in mPoints[i]) {
-
-                if (point!!.statusIsNormal()) {
-                    //先绘制外圆
-                    mNormalPaint.color = mOuterNormalColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
-                            mDotRadius.toFloat(), mNormalPaint)
-
-                    //再绘制内圆
-                    mNormalPaint.color = mInnerNormalColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
-                            mDotRadius / 6.toFloat(), mNormalPaint)
-                }
-
-                if (point!!.statusIsPressed()) {
-                    //先绘制外圆
-                    mPressedPaint.color = mOuterPressedColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
-                            mDotRadius.toFloat(), mPressedPaint)
-
-                    //再绘制内圆
-                    mPressedPaint.color = mInnerPressedColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
-                            mDotRadius / 6.toFloat(), mPressedPaint)
-                }
-
-                if (point!!.statusIsError()) {
-                    //先绘制外圆
-                    mErrorPaint.color = mInnerErrorColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
-                            mDotRadius.toFloat(), mErrorPaint)
-
-                    //再绘制内圆
-                    mErrorPaint.color = mInnerErrorColor
-                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
-                            mDotRadius / 6.toFloat(), mErrorPaint)
-                }
-            }
-        }
-
-        drawLine(canvas)
-    }
-
-    /**
-     * 初始化画笔
-     * 3个点状态的画笔，线的画笔，箭头的画笔
-     */
-    private fun initPaint() {
-
-        //new Paint对象与 设置颜色
-        // 线的画笔
-        mLinePaint = Paint()
-        mLinePaint.color = mInnerPressedColor
-        mLinePaint.style = Paint.Style.STROKE
-        mLinePaint.isAntiAlias = true
-        mLinePaint.strokeWidth = (mDotRadius / 9).toFloat()
-        // 按下的画笔
-        mPressedPaint = Paint()
-        mPressedPaint.style = Paint.Style.STROKE
-        mPressedPaint.isAntiAlias = true
-        mPressedPaint.strokeWidth = (mDotRadius / 6).toFloat()
-        // 错误的画笔
-        mErrorPaint = Paint()
-        mErrorPaint.style = Paint.Style.STROKE
-        mErrorPaint.isAntiAlias = true
-        mErrorPaint.strokeWidth = (mDotRadius / 6).toFloat()
-        // 默认的画笔
-        mNormalPaint = Paint()
-        mNormalPaint.style = Paint.Style.STROKE
-        mNormalPaint.isAntiAlias = true
-        mNormalPaint.strokeWidth = (mDotRadius / 9).toFloat()
-        // 箭头的画笔
-        mArrowPaint = Paint()
-        mArrowPaint.color = mInnerPressedColor
-        mArrowPaint.style = Paint.Style.FILL
-        mArrowPaint.isAntiAlias = true
     }
 
     /**
@@ -189,6 +173,160 @@ class LockPatternView : View {
         mPoints[2][0] = Point(offsetX + squareWidth / 2, offsetY + squareWidth * 5 / 2, 6)
         mPoints[2][1] = Point(offsetX + squareWidth * 3 / 2, offsetY + squareWidth * 5 / 2, 7)
         mPoints[2][2] = Point(offsetX + squareWidth * 5 / 2, offsetY + squareWidth * 5 / 2, 8)
+    }
+
+    /**
+     * 初始化画笔
+     * 3个点状态的画笔，线的画笔，箭头的画笔
+     */
+    private fun initPaint() {
+
+        //new Paint对象与 设置颜色
+        // 线的画笔
+        mLinePaint = Paint()
+        mLinePaint.color = mInnerPressedColor
+        mLinePaint.style = Paint.Style.STROKE
+        mLinePaint.isAntiAlias = true
+        mLinePaint.strokeWidth = (mDotRadius / 9).toFloat()
+        // 按下的画笔
+        mPressedPaint = Paint()
+        mPressedPaint.style = Paint.Style.STROKE
+        mPressedPaint.isAntiAlias = true
+        mPressedPaint.strokeWidth = (mDotRadius / 6).toFloat()
+        // 错误的画笔
+        mErrorPaint = Paint()
+        mErrorPaint.style = Paint.Style.STROKE
+        mErrorPaint.isAntiAlias = true
+        mErrorPaint.strokeWidth = (mDotRadius / 6).toFloat()
+        // 默认的画笔
+        mNormalPaint = Paint()
+        mNormalPaint.style = Paint.Style.STROKE
+        mNormalPaint.isAntiAlias = true
+        mNormalPaint.strokeWidth = (mDotRadius / 9).toFloat()
+        // 箭头的画笔
+        mArrowPaint = Paint()
+        mArrowPaint.color = mInnerPressedColor
+        mArrowPaint.style = Paint.Style.FILL
+        mArrowPaint.isAntiAlias = true
+    }
+
+    /**
+     * 绘制九个空格显示
+     */
+    private fun drawShow(canvas: Canvas) {
+
+        for (i in 0..2) {
+            for (point in mPoints[i]) {
+
+                if (point!!.statusIsNormal()) {
+                    //先绘制外圆
+                    mNormalPaint.color = mOuterNormalColor
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius.toFloat(), mNormalPaint)
+
+                    //再绘制内圆
+                    mNormalPaint.color = mInnerNormalColor
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius / 6.toFloat(), mNormalPaint)
+                }
+
+                if (point!!.statusIsPressed()) {
+                    //先绘制外圆
+                    mPressedPaint.color = mOuterPressedColor
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius.toFloat(), mPressedPaint)
+
+                    //再绘制内圆
+                    mPressedPaint.color = mInnerPressedColor
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius / 6.toFloat(), mPressedPaint)
+                }
+
+                if (point!!.statusIsError()) {
+                    //先绘制外圆
+                    mErrorPaint.color = mOuterErrorColor
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius.toFloat(), mErrorPaint)
+
+                    //再绘制内圆
+                    mErrorPaint.color = mInnerErrorColor
+                    canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius / 6.toFloat(), mErrorPaint)
+                }
+            }
+        }
+        drawLine(canvas)
+    }
+
+    /**
+     * 绘制两个点之间的连线以及箭头
+     */
+    private fun drawLine(canvas: Canvas) {
+
+        if (mSelectPoints.size >= 1) {
+
+            if (mIsErrorStatus) {
+                mLinePaint!!.color = mInnerErrorColor
+                mArrowPaint!!.color = mInnerErrorColor
+            } else {
+                mLinePaint!!.color = mInnerPressedColor
+                mArrowPaint!!.color = mInnerPressedColor
+            }
+
+            //两个点之间需要绘制一条线和箭头
+            var lastPoint = mSelectPoints[0]
+            for (index in 1..mSelectPoints.size - 1) {
+                //两个点之间绘制一条线
+                drawLine(lastPoint, mSelectPoints[index], canvas, mLinePaint)
+                //两个点之间绘制一个箭头
+                drawArrow(canvas, mArrowPaint, lastPoint, mSelectPoints[index], (mDotRadius / 5).toFloat(), 38)
+                lastPoint = mSelectPoints[index]
+            }
+
+            var isInnerPoint = checkInRound(lastPoint.centerX.toFloat(), lastPoint.centerY.toFloat(), mDotRadius.toFloat() / 4, mMovingX, mMovingY)
+            if (isInnerPoint && mIsTouchPoint) {
+                //绘制最后一个点到手指当前位置的连线，手指在内圆里面不要绘制
+                drawLine(lastPoint, LockPatternView.Point(mMovingX.toInt(), mMovingY.toInt(), -1), canvas, mLinePaint)
+            }
+        }
+    }
+
+    /**
+     * 画线 sin cos tan
+     */
+    private fun drawLine(start: Point, end: Point, canvas: Canvas, paint: Paint) {
+        val d = distance(start.centerX.toDouble(), start.centerY.toDouble(), end.centerX.toDouble(), end.centerY.toDouble())
+        val rx = (((end.centerX - start.centerX) * mDotRadius).toDouble() / 5.0 / d).toFloat()
+        val ry = (((end.centerY - start.centerY) * mDotRadius).toDouble() / 5.0 / d).toFloat()
+        canvas.drawLine(start.centerX + rx, start.centerY + ry, end.centerX - rx, end.centerY - ry, paint)
+    }
+
+    /**
+     * 画箭头
+     */
+    private fun drawArrow(canvas: Canvas, paint: Paint, start: Point, end: Point, arrowHeight: Float, angle: Int) {
+        val d = distance(start.centerX.toDouble(), start.centerY.toDouble(), end.centerX.toDouble(), end.centerY.toDouble())
+        val sin_B = ((end.centerX - start.centerX) / d).toFloat()
+        val cos_B = ((end.centerY - start.centerY) / d).toFloat()
+        val tan_A = Math.tan(Math.toRadians(angle.toDouble())).toFloat()
+        val h = (d - arrowHeight.toDouble() - mDotRadius * 1.1).toFloat()
+        val l = arrowHeight * tan_A
+        val a = l * sin_B
+        val b = l * cos_B
+        val x0 = h * sin_B
+        val y0 = h * cos_B
+        val x1 = start.centerX + (h + arrowHeight) * sin_B
+        val y1 = start.centerY + (h + arrowHeight) * cos_B
+        val x2 = start.centerX + x0 - b
+        val y2 = start.centerY.toFloat() + y0 + a
+        val x3 = start.centerX.toFloat() + x0 + b
+        val y3 = start.centerY + y0 - a
+        val path = Path()
+        path.moveTo(x1, y1)
+        path.lineTo(x2, y2)
+        path.lineTo(x3, y3)
+        path.close()
+        canvas.drawPath(path, paint)
     }
 
     //手指触摸的位置
@@ -239,6 +377,7 @@ class LockPatternView : View {
 
                 mIsTouchPoint = false
                 //回调密码获取监听
+                lockCallBack()
             }
         }
         invalidate()
@@ -270,75 +409,6 @@ class LockPatternView : View {
         return Math.sqrt(((sx - x) * (sx - x) + (sy - y) * (sy - y)).toDouble()) < r
     }
 
-
-    /**
-     * 绘制两个点之间的连线以及箭头
-     */
-    private fun drawLine(canvas: Canvas) {
-
-        if (mSelectPoints.size >= 1) {
-            //两个点之间需要绘制一条线和箭头
-            var lastPoint = mSelectPoints[0]
-
-            for (index in 1..mSelectPoints.size - 1) {
-
-                //两个点之间绘制一条线
-                drawLine(lastPoint, mSelectPoints[index], canvas, mLinePaint)
-
-                //两个点之间绘制一个箭头
-                drawArrow(canvas, mArrowPaint, lastPoint, mSelectPoints[index], (mDotRadius / 5).toFloat(), 38)
-
-                lastPoint = mSelectPoints[index]
-            }
-
-
-            var isInnerPoint = checkInRound(lastPoint.centerX.toFloat(), lastPoint.centerY.toFloat(), mDotRadius.toFloat() / 4, mMovingX, mMovingY)
-            if (isInnerPoint && mIsTouchPoint) {
-                //绘制最后一个点到手指当前位置的连线，手指在内圆里面不要绘制
-                drawLine(lastPoint, LockPatternView.Point(mMovingX.toInt(), mMovingY.toInt(), -1), canvas, mLinePaint)
-            }
-
-        }
-    }
-
-    /**
-     * 画线 sin cos tan
-     */
-    private fun drawLine(start: Point, end: Point, canvas: Canvas, paint: Paint) {
-        val d = distance(start.centerX.toDouble(), start.centerY.toDouble(), end.centerX.toDouble(), end.centerY.toDouble())
-        val rx = (((end.centerX - start.centerX) * mDotRadius).toDouble() / 5.0 / d).toFloat()
-        val ry = (((end.centerY - start.centerY) * mDotRadius).toDouble() / 5.0 / d).toFloat()
-        canvas.drawLine(start.centerX + rx, start.centerY + ry, end.centerX - rx, end.centerY - ry, paint)
-    }
-
-    /**
-     * 画箭头
-     */
-    private fun drawArrow(canvas: Canvas, paint: Paint, start: Point, end: Point, arrowHeight: Float, angle: Int) {
-        val d = distance(start.centerX.toDouble(), start.centerY.toDouble(), end.centerX.toDouble(), end.centerY.toDouble())
-        val sin_B = ((end.centerX - start.centerX) / d).toFloat()
-        val cos_B = ((end.centerY - start.centerY) / d).toFloat()
-        val tan_A = Math.tan(Math.toRadians(angle.toDouble())).toFloat()
-        val h = (d - arrowHeight.toDouble() - mDotRadius * 1.1).toFloat()
-        val l = arrowHeight * tan_A
-        val a = l * sin_B
-        val b = l * cos_B
-        val x0 = h * sin_B
-        val y0 = h * cos_B
-        val x1 = start.centerX + (h + arrowHeight) * sin_B
-        val y1 = start.centerY + (h + arrowHeight) * cos_B
-        val x2 = start.centerX + x0 - b
-        val y2 = start.centerY.toFloat() + y0 + a
-        val x3 = start.centerX.toFloat() + x0 + b
-        val y3 = start.centerY + y0 - a
-        val path = Path()
-        path.moveTo(x1, y1)
-        path.lineTo(x2, y2)
-        path.lineTo(x3, y3)
-        path.close()
-        canvas.drawPath(path, paint)
-    }
-
     private fun distance(x1: Double, y1: Double, x2: Double, y2: Double): Double {
         return Math.sqrt(Math.abs(x1 - x2) * Math.abs(x1 - x2) + Math.abs(y1 - y2) * Math.abs(y1 - y2))
     }
@@ -346,7 +416,6 @@ class LockPatternView : View {
     private fun pointTotoDegrees(x: Double, y: Double): Double {
         return Math.toDegrees(Math.atan2(x, y))
     }
-
 
     /**
      * 宫格类

@@ -16,3 +16,6 @@
 
 - SlidingMenuView侧滑菜单
 <img src="gif/sliding_menu_view.gif">
+
+- LockPatternView九宫格解锁
+<img src="gif/lock_pattern_view.gif">
