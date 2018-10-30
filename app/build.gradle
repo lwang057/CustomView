@@ -37,5 +37,6 @@ dependencies {
     compile "org.jetbrains.anko:anko-coroutines:$anko_version"
     //Logger
     implementation 'com.orhanobut:logger:2.2.0'
-
+    //Design
+    compile 'com.android.support:design:27.1.1'
 }

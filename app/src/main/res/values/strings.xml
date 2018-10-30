@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CustomView</string>
+
+    <string name="behavior_translation_title">com.lwang.customview.translationbehavior.TranslationBehavior</string>
 </resources>

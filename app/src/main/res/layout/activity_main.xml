@@ -61,7 +61,7 @@
                 android:id="@+id/button_translation_behavior"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TRANSLATION_BEHAVIOR" />
+                android:text="TRANSLATION_BEHAVIOR控件联动" />
 
             <Button
                 android:id="@+id/button4"
