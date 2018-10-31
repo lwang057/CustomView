@@ -64,10 +64,10 @@
                 android:text="TRANSLATION_BEHAVIOR控件联动" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/button_password_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="button4" />
+                android:text="PASSWORD_EDITTEXT密码输入框与键盘" />
 
             <Button
                 android:id="@+id/button5"

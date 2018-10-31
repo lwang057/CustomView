@@ -9,6 +9,7 @@ import com.lwang.customview.colortrackview.ColorTrackViewActivity;
 import com.lwang.customview.indicatorseekbar.IndicatorSeekBarActivity;
 import com.lwang.customview.lettersideview.LetterSideViewActivity;
 import com.lwang.customview.lockpatternview.LockPatternViewActivity;
+import com.lwang.customview.passwordedittext.PasswordEditTextActivity;
 import com.lwang.customview.slidingmenuview.SlidingMenuViewActivity;
 import com.lwang.customview.stepqqview.StepQQViewActivity;
 import com.lwang.customview.translationbehavior.TranslationBehaviorActivity;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.button_wave_view, R.id.button_step_qq_view, R.id.button_color_track_view,
             R.id.button_letter_side_view, R.id.button_sliding_menu_view, R.id.button_indicator_seekbar,
-            R.id.button_lock_pattern, R.id.button_translation_behavior, R.id.button4, R.id.button5})
+            R.id.button_lock_pattern, R.id.button_translation_behavior, R.id.button_password_edittext, R.id.button5})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_wave_view:
@@ -61,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_translation_behavior:
                 startActivity(new Intent(this, TranslationBehaviorActivity.class));
                 break;
-            case R.id.button4:
-                startActivity(new Intent(this, SlidingMenuViewActivity.class));
+            case R.id.button_password_edittext:
+                startActivity(new Intent(this, PasswordEditTextActivity.class));
                 break;
             case R.id.button5:
                 startActivity(new Intent(this, SlidingMenuViewActivity.class));

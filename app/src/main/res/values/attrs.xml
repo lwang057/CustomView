@@ -9,21 +9,41 @@
     </declare-styleable>
 
     <declare-styleable name="ColorTrackTextView">
-        <attr name="originColor" format="color"/>
-        <attr name="changeColor" format="color"/>
+        <attr name="originColor" format="color" />
+        <attr name="changeColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="LetterSideView">
-        <attr name="pressedTextColor" format="color"/>
-        <attr name="normalTextColor" format="color"/>
-        <attr name="textSize" format="dimension"/>
+        <attr name="pressedTextColor" format="color" />
+        <attr name="normalTextColor" format="color" />
+        <attr name="textSize" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="SlidingMenuView">
-        <attr name="menuRightMargin" format="dimension"/>
+        <attr name="menuRightMargin" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="IndicatorSeekBar">
-    <attr name="bitmap" format="reference"/>
-</declare-styleable>
+        <attr name="bitmap" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="PasswordEditText">
+        <!-- 密码的个数 -->
+        <attr name="passwordNumber" format="integer"/>
+        <!-- 密码圆点的半径 -->
+        <attr name="passwordRadius" format="dimension" />
+        <!-- 密码圆点的颜色 -->
+        <attr name="passwordColor" format="color" />
+        <!-- 分割线的颜色 -->
+        <attr name="divisionLineColor" format="color" />
+        <!-- 分割线的大小 -->
+        <attr name="divisionLineSize" format="dimension" />
+        <!-- 背景边框的颜色 -->
+        <attr name="bgColor" format="color" />
+        <!-- 背景边框的大小 -->
+        <attr name="bgSize" format="dimension" />
+        <!-- 背景边框的圆角大小 -->
+        <attr name="bgCorner" format="dimension"/>
+    </declare-styleable>
+
 </resources>
