@@ -148,6 +148,25 @@ public class PasswordEditText extends EditText {
      */
     private void drawDivisionLine(Canvas canvas) {
 
+        // 给画笔设置大小
+
+
+
+
+
+
+
+        mPaint.setStrokeWidth(mDivisionLineSize);
+        // 设置分割线的颜色
+        mPaint.setColor(mDivisionLineColor);
+
+        for (int i = 0; i < mPasswordNumber; i++) {
+            int startX = mBgSize + (i + 1) * mPasswordItemWidth + i * mDivisionLineSize;
+            int startY = mBgSize;
+            int endX = startX;
+            int endY = getHeight() - mBgSize;
+            canvas.drawLine(startX, startY, endX, endY, mPaint);
+        }
     }
 
     /**
@@ -156,6 +175,10 @@ public class PasswordEditText extends EditText {
      * @param canvas
      */
     private void drawPassword(Canvas canvas) {
+
+    }
+
+    private void addPassword() {
 
     }
 
