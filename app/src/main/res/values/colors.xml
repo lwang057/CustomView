@@ -5,4 +5,6 @@
     <color name="colorAccent">#1ab6a2</color>
 
     <color name="write">#ffffff</color>
+    <color name="_66">#666666</color>
+    <color name="_99">#999999</color>
 </resources>

@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.inputmethod.EditorInfo;
@@ -17,7 +18,7 @@ import com.lwang.customview.R;
 /**
  * @author lwang
  * @date 2018/10/31
- * @description
+ * @description 自定义密码输入框
  */
 @SuppressLint("AppCompatCustomView")
 public class PasswordEditText extends EditText {
@@ -64,8 +65,12 @@ public class PasswordEditText extends EditText {
         super(context, attrs);
         initAttributeSet(context, attrs);
         initPaint();
-        // 默认只能够设置数字和字母
+        // 设置输入模式是密码
         setInputType(EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
+        // 不显示光标
+        setCursorVisible(false);
+        // 不让点击
+        setEnabled(false);
     }
 
     /**
@@ -114,6 +119,14 @@ public class PasswordEditText extends EditText {
         drawDivisionLine(canvas);
         // 画密码
         drawPassword(canvas);
+
+        // 判断当前密码是不是满了
+        if (mListener != null) {
+            String password = getText().toString().trim();
+            if (password.length() >= mPasswordNumber) {
+                mListener.passwordFull(password);
+            }
+        }
     }
 
     /**
@@ -149,18 +162,11 @@ public class PasswordEditText extends EditText {
     private void drawDivisionLine(Canvas canvas) {
 
         // 给画笔设置大小
-
-
-
-
-
-
-
         mPaint.setStrokeWidth(mDivisionLineSize);
         // 设置分割线的颜色
         mPaint.setColor(mDivisionLineColor);
 
-        for (int i = 0; i < mPasswordNumber; i++) {
+        for (int i = 0; i < mPasswordNumber - 1; i++) {
             int startX = mBgSize + (i + 1) * mPasswordItemWidth + i * mDivisionLineSize;
             int startY = mBgSize;
             int endX = startX;
@@ -176,10 +182,60 @@ public class PasswordEditText extends EditText {
      */
     private void drawPassword(Canvas canvas) {
 
+        // 密码绘制是实心
+        mPaint.setStyle(Paint.Style.FILL);
+        // 设置密码的颜色
+        mPaint.setColor(mPasswordColor);
+        // 获取密码的长度
+        int passwordLength = getText().toString().trim().length();
+        // 不断的绘制密码
+        for (int i = 0; i < passwordLength; i++) {
+            int cx = mBgSize + i * mPasswordItemWidth + i * mDivisionLineSize + mPasswordItemWidth / 2;
+            int cy = getHeight() / 2;
+            canvas.drawCircle(cx, cy, mPasswordRadius, mPaint);
+        }
     }
 
-    private void addPassword() {
+    /**
+     * 添加一个秘密
+     */
+    public void addPassword(String number) {
 
+        // 把之前的密码取出来
+        String password = getText().toString().trim();
+        if (password.length() >= mPasswordNumber) {
+            // 密码不能超过当前密码个输
+            return;
+        }
+        // 密码叠加
+        password += number;
+        setText(password);
+    }
+
+    /**
+     * 删除最后一位密码
+     */
+    public void deleteLastPassword() {
+        String password = getText().toString().trim();
+        // 判断当前密码是不是空
+        if (TextUtils.isEmpty(password)) {
+            return;
+        }
+        password = password.substring(0, password.length() - 1);
+        setText(password);
+    }
+
+    private PasswordFullListener mListener;
+
+    interface PasswordFullListener {
+        void passwordFull(String password);
+    }
+
+    /**
+     * 设置当前密码已满的接口回掉
+     */
+    public void setOnPasswordFullListener(PasswordFullListener listener) {
+        this.mListener = listener;
     }
 
     /**
