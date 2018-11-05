@@ -7,4 +7,8 @@
     <color name="write">#ffffff</color>
     <color name="_66">#666666</color>
     <color name="_99">#999999</color>
+
+    <color name="triangle">#aa72d572</color>
+    <color name="circle">#aa738ffe</color>
+    <color name="rect">#aae84e40</color>
 </resources>
