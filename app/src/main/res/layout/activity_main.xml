@@ -70,10 +70,10 @@
                 android:text="PASSWORD_EDITTEXT密码输入框与键盘" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/button_loading_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="button5" />
+                android:text="LOADING_VIEW数据加载动画" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

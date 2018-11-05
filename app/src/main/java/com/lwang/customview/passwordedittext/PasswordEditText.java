@@ -110,7 +110,6 @@ public class PasswordEditText extends EditText {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
         // 一个密码所占的宽度
         mPasswordItemWidth = (getWidth() - 2 * mBgSize - (mPasswordNumber - 1) * mDivisionLineSize) / mPasswordNumber;
         // 画背景
