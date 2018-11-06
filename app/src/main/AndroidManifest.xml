@@ -27,6 +27,7 @@
         <activity android:name=".translationbehavior.TranslationBehaviorActivity"/>
         <activity android:name=".passwordedittext.PasswordEditTextActivity"/>
         <activity android:name=".loadingview.LoadingViewActivity"/>
+        <activity android:name=".loadingdataview.LoadingDataViewActivity" />
     </application>
 
 </manifest>

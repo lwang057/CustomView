@@ -73,7 +73,13 @@
                 android:id="@+id/button_loading_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LOADING_VIEW数据加载动画" />
+                android:text="LOADING_VIEW加载动画" />
+
+            <Button
+                android:id="@+id/button_loading_data_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LOADING_DATA_VIEW数据加载动画" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
