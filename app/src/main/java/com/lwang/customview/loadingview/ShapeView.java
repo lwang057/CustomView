@@ -41,7 +41,7 @@ public class ShapeView extends View {
         // 只保证是正方形
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
-        setMeasuredDimension(Math.min(width, height), Math.min(width, height));
+        setMeasuredDimension(Math.min(width, height), Math.min(width, height)); //Math.min() 比较得出参数中的最小值
     }
 
     @Override
@@ -63,7 +63,11 @@ public class ShapeView extends View {
                 mPaint.setColor(ContextCompat.getColor(getContext(), R.color.triangle));
                 if (mPath == null) {
                     mPath = new Path();
+                    mPath.moveTo(getWidth() / 2, 0);// 此点为多边形的起点
+                    mPath.lineTo(0, (float) ((getWidth() / 2) * Math.sqrt(3)));
+                    mPath.lineTo(getWidth(), (float) ((getWidth() / 2) * Math.sqrt(3)));
 
+                    mPath.close();// 使这些路线闭合，构成封闭的多边形
                 }
                 canvas.drawPath(mPath, mPaint);
                 break;
@@ -75,7 +79,7 @@ public class ShapeView extends View {
     /**
      * 不断重新绘制形状
      */
-    public void changeShape() {
+    public void changeCurrentShape() {
         switch (mCurrentShape) {
             case Circle:
                 mCurrentShape = Shape.Square;
