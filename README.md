@@ -19,3 +19,9 @@
 
 - LockPatternView九宫格解锁
 <img src="gif/lock_pattern_view.gif">
+
+- LoadingView仿58同城数据加载动画
+<img src="gif/loading_view.gif">
+
+- LoadingDataView仿雅虎新闻数据加载动画
+<img src="gif/loading_data_view.gif">
