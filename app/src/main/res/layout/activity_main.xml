@@ -80,6 +80,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="LOADING_DATA_VIEW数据加载动画" />
+
+            <Button
+                android:id="@+id/button_message_bubble_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MESSAGE_BUBBLE_VIEW消息拖拽动画" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
