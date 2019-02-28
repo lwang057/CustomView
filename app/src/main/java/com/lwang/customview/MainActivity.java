@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lwang.customview.colortrackview.ColorTrackViewActivity;
+import com.lwang.customview.guideview.GuideActivity;
 import com.lwang.customview.indicatorseekbar.IndicatorSeekBarActivity;
 import com.lwang.customview.lettersideview.LetterSideViewActivity;
 import com.lwang.customview.loadingdataview.LoadingDataViewActivity;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.button_wave_view, R.id.button_step_qq_view, R.id.button_color_track_view,
             R.id.button_letter_side_view, R.id.button_sliding_menu_view, R.id.button_indicator_seekbar,
             R.id.button_lock_pattern, R.id.button_translation_behavior, R.id.button_password_edittext,
-            R.id.button_loading_view, R.id.button_loading_data_view, R.id.button_message_bubble_view})
+            R.id.button_loading_view, R.id.button_loading_data_view, R.id.button_message_bubble_view, R.id.button_guide_view})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_wave_view:
@@ -75,8 +76,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_loading_data_view:
                 startActivity(new Intent(this, LoadingDataViewActivity.class));
                 break;
-                case R.id.button_message_bubble_view:
+            case R.id.button_message_bubble_view:
                 startActivity(new Intent(this, MessageBubbleViewActivity.class));
+                break;
+            case R.id.button_guide_view:
+                startActivity(new Intent(this, GuideActivity.class));
                 break;
             default:
                 break;

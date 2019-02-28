@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#1ab6a2</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#008577</color>
+    <color name="colorAccent">#008577</color>
 
     <color name="write">#ffffff</color>
     <color name="_66">#666666</color>
@@ -18,6 +18,9 @@
     <color name="blue">#00C6FF</color>
     <color name="green">#00E099</color>
     <color name="pink">#FF3891</color>
+
+    <color name="color_4675f4">#4675f4</color>
+    <color name="color_eef2ff">#eef2ff</color>
 
     <array name="splash_circle_colors">
         <item>@color/blue</item>

@@ -86,6 +86,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="MESSAGE_BUBBLE_VIEW消息拖拽动画" />
+
+            <Button
+                android:id="@+id/button_guide_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GUIDE_VIEW引导页" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
