@@ -5,10 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.lwang.customview.messagebubbleview.MessageBubbleViewActivity">
 
-    <TextView
+    <com.lwang.customview.messagebubbleview.MessageBubbleView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="消息拖拽View" />
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
