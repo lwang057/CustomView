@@ -1,6 +1,11 @@
 package com.lwang.customview.messagebubbleview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +16,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 
 /**
  * @author lwang
@@ -18,6 +24,8 @@ import android.view.View;
  * @description 消息拖拽View
  */
 public class MessageBubbleView extends View {
+
+    private Context mContext;
 
     //两个圆的圆形
     private PointF mDragPoint, mFixActionPoint;
@@ -29,24 +37,31 @@ public class MessageBubbleView extends View {
     private int mFixActionRadiusMax = 7;
     private int mFixActionRadiusMin = 3;
     private int mFixActionRadius;
+    private Bitmap mDragBitmap;
 
 
     public MessageBubbleView(Context context) {
         super(context);
+        this.mContext = context;
+        initView();
     }
 
     public MessageBubbleView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        mDragRadius = dip2px(mDragRadius);
-        mFixActionRadiusMax = dip2px(mFixActionRadiusMax);
-        mFixActionRadiusMin = dip2px(mFixActionRadiusMin);
+        this.mContext = context;
+        initView();
+    }
+
+    private void initView() {
+        mDragRadius = BubbleUtils.dip2px(mDragRadius, mContext);
+        mFixActionRadiusMax = BubbleUtils.dip2px(mFixActionRadiusMax, mContext);
+        mFixActionRadiusMin = BubbleUtils.dip2px(mFixActionRadiusMin, mContext);
 
         mPaint = new Paint();
         mPaint.setColor(Color.RED);
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -64,50 +79,12 @@ public class MessageBubbleView extends View {
             //画贝塞尔曲线
             canvas.drawPath(bezierPath, mPaint);
         }
-    }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                //手指按下要去指定当前的位置
-                float downX = event.getX();
-                float downY = event.getY();
-                initPoint(downX, downY);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                float moveX = event.getX();
-                float moveY = event.getY();
-                updateDragPoint(moveX, moveY);
-                break;
-            case MotionEvent.ACTION_UP:
-
-                break;
+        // 画图片 位置也是手指移动的位置 , 中心位置才是手指拖动的位置
+        if (mDragBitmap != null) {
+            // 搞一个渐变动画
+            canvas.drawBitmap(mDragBitmap, mDragPoint.x - mDragBitmap.getWidth() / 2, mDragPoint.y - mDragBitmap.getHeight() / 2, null);
         }
-        invalidate();
-        return true;
-    }
-
-    /**
-     * 初始化位置
-     *
-     * @param downX
-     * @param downY
-     */
-    private void initPoint(float downX, float downY) {
-        mFixActionPoint = new PointF(downX, downY);
-        mDragPoint = new PointF(downX, downY);
-    }
-
-    /**
-     * 更新当前拖拽点的位置
-     *
-     * @param moveX
-     * @param moveY
-     */
-    private void updateDragPoint(float moveX, float moveY) {
-        mDragPoint.x = moveX;
-        mDragPoint.y = moveY;
     }
 
     /**
@@ -117,10 +94,10 @@ public class MessageBubbleView extends View {
      */
     private Path getBezierPath() {
         //获取两个点的距离
-        double distance = getDistance(mDragPoint, mFixActionPoint);
+        float distance = BubbleUtils.getDistanceBetween2Points(mDragPoint, mFixActionPoint);
 
         //两点距离越大，固定圆的半径就越小
-        mFixActionRadius = (int) (mFixActionRadiusMax - distance / 14);
+        mFixActionRadius = (int) (mFixActionRadiusMax - distance / 30);
         if (mFixActionRadius < mFixActionRadiusMin) {
             //超过一定距离 贝塞尔和固定圆都不要画了
             return null;
@@ -153,7 +130,7 @@ public class MessageBubbleView extends View {
         float p3y = (float) (mFixActionPoint.y + mFixActionRadius * Math.cos(arcTanA));
 
         // 控制点
-        PointF controlPoint = getControlPoint();
+        PointF controlPoint = new PointF((mDragPoint.x + mFixActionPoint.x) / 2, (mDragPoint.y + mFixActionPoint.y) / 2);
 
         // 拼装贝塞尔的曲线路径（起始点与控制点）
         // 从p0点开始画
@@ -172,27 +149,105 @@ public class MessageBubbleView extends View {
     }
 
     /**
-     * 获取两个圆之间的距离
+     * 绑定可以拖拽的控件
      *
-     * @param point1
-     * @param point2
-     * @return
+     * @param view
+     * @param disappearListener
      */
-    private double getDistance(PointF point1, PointF point2) {
-        return Math.sqrt((point1.x - point2.x) * (point1.x - point2.x) + (point1.y - point2.y) * (point1.y - point2.y));
+    public static void attach(View view, BubbleMessageTouchListener.BubbleDisappearListener disappearListener) {
+        view.setOnTouchListener(new BubbleMessageTouchListener(view.getContext(), view, disappearListener));
     }
 
     /**
-     * 获取控制点
+     * 设置要显示的view
      *
-     * @return
+     * @param dragBitmap
      */
-    private PointF getControlPoint() {
-        return new PointF((mDragPoint.x + mFixActionPoint.x) / 2, (mDragPoint.y + mFixActionPoint.y) / 2);
+    public void setDragBitmap(Bitmap dragBitmap) {
+        this.mDragBitmap = dragBitmap;
     }
 
-    private int dip2px(int dip) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
+    /**
+     * 初始化位置
+     *
+     * @param downX
+     * @param downY
+     */
+    public void initPoint(float downX, float downY) {
+        mFixActionPoint = new PointF(downX, downY);
+        mDragPoint = new PointF(downX, downY);
+        invalidate();
+    }
+
+    /**
+     * 更新当前拖拽点的位置
+     *
+     * @param moveX
+     * @param moveY
+     */
+    public void updateDragPoint(float moveX, float moveY) {
+        mDragPoint.x = moveX;
+        mDragPoint.y = moveY;
+        invalidate();
+    }
+
+    /**
+     * 处理手指松开
+     */
+    public void handleActionUp() {
+        if (mFixActionRadius > mFixActionRadiusMin) {
+            // 回弹
+            // ValueAnimator 值变化的动画  0 变化到 1
+            ValueAnimator animator = ObjectAnimator.ofFloat(1);
+            animator.setDuration(250);
+            final PointF start = new PointF(mDragPoint.x, mDragPoint.y);
+            final PointF end = new PointF(mFixActionPoint.x, mFixActionPoint.y);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float percent = (float) animation.getAnimatedValue();
+                    PointF pointF = BubbleUtils.getPointByPercent(start, end, percent);
+
+                    // 用代码更新拖拽点
+                    updateDragPoint(pointF.x, pointF.y);
+                }
+            });
+
+            // 设置一个差值器 在结束的时候回弹
+            animator.setInterpolator(new OvershootInterpolator(3f));
+            animator.start();
+
+            // 还要通知 TouchListener 移除当前View 然后显示静态的 View
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (mListener != null) {
+                        mListener.restore();
+                    }
+                }
+            });
+        } else {
+            // 爆炸
+            if (mListener != null) {
+                mListener.dismiss(mDragPoint);
+            }
+        }
+    }
+
+
+    private MessageBubbleListener mListener;
+
+    public void setMessageBubbleListener(MessageBubbleListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface MessageBubbleListener {
+
+        // 还原
+        void restore();
+
+        // 消失爆炸
+        void dismiss(PointF pointF);
     }
 
 
