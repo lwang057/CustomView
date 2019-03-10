@@ -31,3 +31,6 @@
 
 - GuideView引导页
 <img src="gif/guide_view.gif">
+
+- LoveLayout直播点赞动画
+<img src="gif/love_layout_view.gif">

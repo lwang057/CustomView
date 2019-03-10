@@ -57,12 +57,12 @@ public class MessageBubbleView extends View {
         //画拖拽圆
         canvas.drawCircle(mDragPoint.x, mDragPoint.y, mDragRadius, mPaint);
 
-        Path beisaierPath = getBeisaierPath();
-        if (beisaierPath != null) {
+        Path bezierPath = getBezierPath();
+        if (bezierPath != null) {
             //画固定圆  有一个初始化大小，而且他的半径是随着距离的增大而减小  小到一定程度就不见了（不画了）
             canvas.drawCircle(mFixActionPoint.x, mFixActionPoint.y, mFixActionRadius, mPaint);
             //画贝塞尔曲线
-            canvas.drawPath(beisaierPath, mPaint);
+            canvas.drawPath(bezierPath, mPaint);
         }
     }
 
@@ -115,7 +115,7 @@ public class MessageBubbleView extends View {
      *
      * @return
      */
-    private Path getBeisaierPath() {
+    private Path getBezierPath() {
         //获取两个点的距离
         double distance = getDistance(mDragPoint, mFixActionPoint);
 
@@ -126,7 +126,7 @@ public class MessageBubbleView extends View {
             return null;
         }
 
-        Path besaierPath = new Path();
+        Path bezierPath = new Path();
 
         // 求斜率
         float dy = (mDragPoint.y - mFixActionPoint.y);
@@ -157,18 +157,18 @@ public class MessageBubbleView extends View {
 
         // 拼装贝塞尔的曲线路径（起始点与控制点）
         // 从p0点开始画
-        besaierPath.moveTo(p0x, p0y);
+        bezierPath.moveTo(p0x, p0y);
         // 画第一条  p0x, p0y为起点、  controlPoint.x, controlPoint.y为控制点、  p1x, p1y为终点
-        besaierPath.quadTo(controlPoint.x, controlPoint.y, p1x, p1y);
+        bezierPath.quadTo(controlPoint.x, controlPoint.y, p1x, p1y);
 
         // 从p1连接到p2
-        besaierPath.lineTo(p2x, p2y);
+        bezierPath.lineTo(p2x, p2y);
         // 画第二条  p2x, p2y为起点、  controlPoint.x, controlPoint.y为控制点、  p3x, p3y为终点
-        besaierPath.quadTo(controlPoint.x, controlPoint.y, p3x, p3y);
+        bezierPath.quadTo(controlPoint.x, controlPoint.y, p3x, p3y);
 
         // 闭合
-        besaierPath.close();
-        return besaierPath;
+        bezierPath.close();
+        return bezierPath;
     }
 
     /**

@@ -30,6 +30,7 @@
         <activity android:name=".loadingdataview.LoadingDataViewActivity" />
         <activity android:name=".messagebubbleview.MessageBubbleViewActivity"/>
         <activity android:name=".guideview.GuideActivity"/>
+        <activity android:name=".lovelayout.LoveLayoutActivity"/>
     </application>
 
 </manifest>
