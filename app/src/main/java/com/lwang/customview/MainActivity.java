@@ -43,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
             R.id.button_letter_side_view, R.id.button_sliding_menu_view, R.id.button_indicator_seekbar,
             R.id.button_lock_pattern, R.id.button_translation_behavior, R.id.button_password_edittext,
             R.id.button_loading_view, R.id.button_loading_data_view, R.id.button_message_bubble_view,
-            R.id.button_guide_view, R.id.button_love_layout})
-            R.id.button_loading_view, R.id.button_loading_data_view, R.id.button_message_bubble_view,
-            R.id.button_guide_view, R.id.button_finger_view})
+            R.id.button_guide_view, R.id.button_love_layout, R.id.button_finger_view})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_wave_view:
