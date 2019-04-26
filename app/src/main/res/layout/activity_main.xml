@@ -92,6 +92,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="GUIDE_VIEW引导页" />
+
+            <Button
+                android:id="@+id/button_finger_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FINGER_VIEW指纹识别" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -7,8 +7,6 @@ import android.security.keystore.KeyProperties;
 import android.support.annotation.RequiresApi;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 
-import com.yonyou.zgcbank.utils.LogUtils;
-
 import java.security.Key;
 import java.security.KeyStore;
 
