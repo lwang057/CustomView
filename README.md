@@ -25,3 +25,12 @@
 
 - LoadingDataView仿雅虎新闻数据加载动画
 <img src="gif/loading_data_view.gif">
+
+- MessageBubbleViewQQ气泡拖拽动画
+<img src="gif/message_bubble_view.gif">
+
+- GuideView引导页
+<img src="gif/guide_view.gif">
+
+- LoveLayout直播点赞动画
+<img src="gif/love_layout_view.gif">

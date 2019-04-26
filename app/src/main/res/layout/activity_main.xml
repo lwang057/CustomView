@@ -94,6 +94,12 @@
                 android:text="GUIDE_VIEW引导页" />
 
             <Button
+                android:id="@+id/button_love_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LOVE_LAYOUT直播点赞动画" />
+
+            <Button
                 android:id="@+id/button_finger_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
