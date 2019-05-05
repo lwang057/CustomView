@@ -26,7 +26,7 @@ import javax.crypto.KeyGenerator;
 @RequiresApi(Build.VERSION_CODES.M)
 public class CryptoObjectHelper {
 
-    static final String KEY_NAME = "com.mobile.zgcbank.utils.finger.CryptoObjectHelper";
+    static final String KEY_NAME = "com.lwang.customview.fingerprintview.CryptoObjectHelper";
     static final String KEYSTORE_NAME = "AndroidKeyStore";
     static final String KEY_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES;
     static final String BLOCK_MODE = KeyProperties.BLOCK_MODE_CBC;
