@@ -104,6 +104,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FINGER_VIEW指纹识别" />
+
+            <Button
+                android:id="@+id/button_float_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FLOAT_VIEW悬浮框" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
