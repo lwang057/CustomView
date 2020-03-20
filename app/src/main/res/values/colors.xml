@@ -31,4 +31,24 @@
         <item>@color/yellow</item>
     </array>
 
+    <color name="support_recycler_color_text_gray">#FF777777</color>
+
+    <color name="support_recycler_color_loading_color1">#55777777</color>
+    <color name="support_recycler_color_loading_color2">#B1777777</color>
+    <color name="support_recycler_color_loading_color3">#FF777777</color>
+
+    <color name="text_color">#333333</color>
+
+    <color name="red_normal">#FF0000</color>
+    <color name="red_pressed">#FF6666</color>
+    <color name="green_normal">#37C000</color>
+    <color name="green_pressed">#30A070</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_pressed">#CFCFCF</color>
+
+    <color name="divider_color">#B7B2B2</color>
+
+
 </resources>

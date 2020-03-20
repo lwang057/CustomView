@@ -2,4 +2,10 @@
     <string name="app_name">CustomView</string>
 
     <string name="behavior_translation_title">com.lwang.customview.translationbehavior.TranslationBehavior</string>
+
+    <string name="support_recycler_data_empty">There is no data</string>
+    <string name="support_recycler_more_not">No more data</string>
+    <string name="support_recycler_click_load_more">Click to load more</string>
+    <string name="support_recycler_load_error">Error, please try again</string>
+    <string name="support_recycler_load_more_message">Loading, please wait later</string>
 </resources>

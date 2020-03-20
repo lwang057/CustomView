@@ -110,6 +110,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FLOAT_VIEW悬浮框" />
+
+            <Button
+                android:id="@+id/button_drag_swipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RECYCLER_VIEW侧滑删除" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -16,6 +16,7 @@ import com.lwang.customview.loadingview.LoadingViewActivity;
 import com.lwang.customview.lockpatternview.LockPatternViewActivity;
 import com.lwang.customview.lovelayout.LoveLayoutActivity;
 import com.lwang.customview.messagebubbleview.MessageBubbleViewActivity;
+import com.lwang.customview.dragswipeview.DragSwipeListActivity;
 import com.lwang.customview.passwordedittext.PasswordEditTextActivity;
 import com.lwang.customview.slidingmenuview.SlidingMenuViewActivity;
 import com.lwang.customview.stepqqview.StepQQViewActivity;
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.button_letter_side_view, R.id.button_sliding_menu_view, R.id.button_indicator_seekbar,
             R.id.button_lock_pattern, R.id.button_translation_behavior, R.id.button_password_edittext,
             R.id.button_loading_view, R.id.button_loading_data_view, R.id.button_message_bubble_view,
-            R.id.button_guide_view, R.id.button_love_layout, R.id.button_finger_view, R.id.button_float_view})
+            R.id.button_guide_view, R.id.button_love_layout, R.id.button_finger_view, R.id.button_float_view,
+            R.id.button_drag_swipe})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_wave_view:
@@ -94,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.button_float_view:
                 startActivity(new Intent(this, FloatActivity.class));
+                break;
+            case R.id.button_drag_swipe:
+                startActivity(new Intent(this, DragSwipeListActivity.class));
                 break;
             default:
                 break;
