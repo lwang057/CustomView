@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selectableItemBackground"
-    android:gravity="center_vertical"
-    android:minHeight="70dp"
-    android:padding="10dp">
+    android:orientation="vertical"
+    android:background="?selectableItemBackground">
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/_99"
+        android:layout_height="1dp"/>
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Testing"/>
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:padding="20dp"
+        tools:text="Testing" />
 
 </LinearLayout>

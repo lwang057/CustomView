@@ -14,7 +14,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<com.lwang.customview.recyclerview.SwipeMenuLayout
+<com.lwang.customview.utils.recyclerview.SwipeMenuLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -23,7 +23,7 @@
     app:leftViewId="@+id/swipe_left"
     app:rightViewId="@+id/swipe_right">
 
-    <com.lwang.customview.recyclerview.SwipeMenuView
+    <com.lwang.customview.utils.recyclerview.SwipeMenuView
         android:id="@+id/swipe_left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
@@ -33,9 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.lwang.customview.recyclerview.SwipeMenuView
+    <com.lwang.customview.utils.recyclerview.SwipeMenuView
         android:id="@+id/swipe_right"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
 
-</com.lwang.customview.recyclerview.SwipeMenuLayout>
+</com.lwang.customview.utils.recyclerview.SwipeMenuLayout>

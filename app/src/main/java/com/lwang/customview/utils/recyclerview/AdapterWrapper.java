@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lwang.customview.recyclerview;
+package com.lwang.customview.utils.recyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -30,8 +30,8 @@ import com.lwang.customview.R;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import static com.lwang.customview.recyclerview.SwipeRecyclerView.LEFT_DIRECTION;
-import static com.lwang.customview.recyclerview.SwipeRecyclerView.RIGHT_DIRECTION;
+import static com.lwang.customview.utils.recyclerview.SwipeRecyclerView.LEFT_DIRECTION;
+import static com.lwang.customview.utils.recyclerview.SwipeRecyclerView.RIGHT_DIRECTION;
 
 
 /**
@@ -51,7 +51,6 @@ class AdapterWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private SwipeMenuCreator mSwipeMenuCreator;
     private OnItemMenuClickListener mOnItemMenuClickListener;
     private OnItemClickListener mOnItemClickListener;
-    private OnItemLongClickListener mOnItemLongClickListener;
 
     AdapterWrapper(Context context, RecyclerView.Adapter adapter) {
         this.mInflater = LayoutInflater.from(context);
@@ -72,10 +71,6 @@ class AdapterWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     void setOnItemClickListener(OnItemClickListener listener) {
         this.mOnItemClickListener = listener;
-    }
-
-    void setOnItemLongClickListener(OnItemLongClickListener listener) {
-        this.mOnItemLongClickListener = listener;
     }
 
     @Override
@@ -116,15 +111,6 @@ class AdapterWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     mOnItemClickListener.onItemClick(v, viewHolder.getAdapterPosition());
-                }
-            });
-        }
-        if (mOnItemLongClickListener != null) {
-            viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    mOnItemLongClickListener.onItemLongClick(v, viewHolder.getAdapterPosition());
-                    return true;
                 }
             });
         }

@@ -6,14 +6,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/switch_compat"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:text="状态：-----侧滑删除开关" />
-
-    <com.lwang.customview.recyclerview.SwipeRecyclerView
+    <com.lwang.customview.utils.recyclerview.SwipeRecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

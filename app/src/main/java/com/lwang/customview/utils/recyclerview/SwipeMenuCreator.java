@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Yan Zhenjie
+ * Copyright 2016 Yan Zhenjie
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lwang.customview.recyclerview;
-
-import android.view.View;
+package com.lwang.customview.utils.recyclerview;
 
 /**
- * Created by YanZhenjie on 2017/7/21.
+ * Created by Yan Zhenjie on 2016/7/26.
  */
-public interface OnItemClickListener {
+public interface SwipeMenuCreator {
 
     /**
-     * @param view target view.
-     * @param adapterPosition position of item.
+     * Create menu for recyclerVie item.
+     *
+     * @param leftMenu the menu on the left.
+     * @param rightMenu the menu on the right.
+     * @param position the position of item.
      */
-    void onItemClick(View view, int adapterPosition);
+    void onCreateMenu(SwipeMenu leftMenu, SwipeMenu rightMenu, int position);
 }

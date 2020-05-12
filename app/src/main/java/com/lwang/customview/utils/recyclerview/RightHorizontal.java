@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lwang.customview.recyclerview;
+package com.lwang.customview.utils.recyclerview;
 
 import android.view.View;
 import android.widget.OverScroller;
@@ -21,21 +21,21 @@ import android.widget.OverScroller;
 /**
  * Created by Yan Zhenjie on 2016/7/22.
  */
-class LeftHorizontal extends Horizontal {
+class RightHorizontal extends Horizontal {
 
-    public LeftHorizontal(View menuView) {
-        super(SwipeRecyclerView.LEFT_DIRECTION, menuView);
+    public RightHorizontal(View menuView) {
+        super(SwipeRecyclerView.RIGHT_DIRECTION, menuView);
     }
 
     @Override
     public boolean isMenuOpen(int scrollX) {
         int i = -getMenuView().getWidth() * getDirection();
-        return scrollX <= i && i != 0;
+        return scrollX >= i && i != 0;
     }
 
     @Override
     public boolean isMenuOpenNotEqual(int scrollX) {
-        return scrollX < -getMenuView().getWidth() * getDirection();
+        return scrollX > -getMenuView().getWidth() * getDirection();
     }
 
     @Override
@@ -56,17 +56,17 @@ class LeftHorizontal extends Horizontal {
         if (mChecker.x == 0) {
             mChecker.shouldResetSwipe = true;
         }
-        if (mChecker.x >= 0) {
+        if (mChecker.x < 0) {
             mChecker.x = 0;
         }
-        if (mChecker.x <= -getMenuView().getWidth()) {
-            mChecker.x = -getMenuView().getWidth();
+        if (mChecker.x > getMenuView().getWidth()) {
+            mChecker.x = getMenuView().getWidth();
         }
         return mChecker;
     }
 
     @Override
     public boolean isClickOnContentView(int contentViewWidth, float x) {
-        return x > getMenuView().getWidth();
+        return x < (contentViewWidth - getMenuView().getWidth());
     }
 }
