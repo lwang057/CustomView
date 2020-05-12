@@ -36,6 +36,7 @@
         <activity android:name=".fingerprintview.FingerPrintActivity"/>
         <activity android:name=".floatview.FloatActivity"/>
         <activity android:name=".dragswipeview.DragSwipeListActivity"/>
+        <activity android:name=".qrcodeview.QRCodeViewActivity"/>
     </application>
 
 </manifest>
