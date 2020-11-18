@@ -21,7 +21,7 @@ public class QRCodeViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode_view);
 
         //1.准备好背景图和生成二维码
-        Bitmap bitmap1 = ((BitmapDrawable) getResources().getDrawable(R.mipmap.bg_xc_share)).getBitmap();
+        Bitmap bitmap1 = ((BitmapDrawable) getResources().getDrawable(R.mipmap.bg_share)).getBitmap();
         Bitmap bitmap2 = QRCodeUtil.createQRCodeBitmap("https://www.baidu.com", dp2Px(this, 60));
 
         //2.将二维码按比例放大
