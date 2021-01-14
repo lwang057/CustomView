@@ -33,10 +33,7 @@
         <activity android:name=".messagebubbleview.MessageBubbleViewActivity"/>
         <activity android:name=".guideview.GuideActivity"/>
         <activity android:name=".lovelayout.LoveLayoutActivity"/>
-        <activity android:name=".fingerprintview.FingerPrintActivity"/>
-        <activity android:name=".floatview.FloatActivity"/>
         <activity android:name=".dragswipeview.DragSwipeListActivity"/>
-        <activity android:name=".qrcodeview.QRCodeViewActivity"/>
     </application>
 
 </manifest>

@@ -100,28 +100,10 @@
                 android:text="LOVE_LAYOUT直播点赞动画" />
 
             <Button
-                android:id="@+id/button_finger_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="FINGER_VIEW指纹识别" />
-
-            <Button
-                android:id="@+id/button_float_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="FLOAT_VIEW悬浮框" />
-
-            <Button
                 android:id="@+id/button_drag_swipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="RECYCLER_VIEW侧滑删除" />
-
-            <Button
-                android:id="@+id/button_qr_code_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="QR_CODE_VIEW生成二维码" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
